@@ -32,10 +32,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,16 +47,12 @@ import java.util.Locale;
 import java.util.Map;
 
 import bl.clsHelperBL;
-import bl.clsMainBL;
 import bl.mCounterNumberBL;
 import bl.mEmployeeSalesProductBL;
 import bl.mUserLOBBL;
 import bl.tKemasanRusakDetailBL;
 import bl.tKemasanRusakHeaderBL;
 import bl.tKemasanRusakImageBL;
-import bl.tSalesProductQuantityDetailBL;
-import bl.tSalesProductQuantityHeaderBL;
-import bl.tSalesProductQuantityImageBL;
 import bl.tUserLoginBL;
 import edu.swu.pulltorefreshswipemenulistview.library.PullToRefreshSwipeMenuListView;
 import edu.swu.pulltorefreshswipemenulistview.library.pulltorefresh.interfaces.IXListViewListener;
@@ -75,9 +67,6 @@ import library.spgmobile.common.mUserLOBData;
 import library.spgmobile.common.tKemasanRusakDetailData;
 import library.spgmobile.common.tKemasanRusakHeaderData;
 import library.spgmobile.common.tKemasanRusakImageData;
-import library.spgmobile.common.tSalesProductQuantityDetailData;
-import library.spgmobile.common.tSalesProductQuantityHeaderData;
-import library.spgmobile.common.tSalesProductQuantityImageData;
 import library.spgmobile.common.tUserLoginData;
 import library.spgmobile.common.visitplanAbsenData;
 import library.spgmobile.dal.clsHardCode;
@@ -226,13 +215,13 @@ public class FragmentAddKemasanRusak extends Fragment implements IXListViewListe
 
             if (photoAfter1 != null) {
                 after1.setImageBitmap(photoAfter1);
-                photoAfter1.compress(Bitmap.CompressFormat.PNG, 100, output);
+                photoAfter1.compress(Bitmap.CompressFormat.JPEG, 80, output);
                 phtAfter1 = output.toByteArray();
             }
 
             if (photoAfter2 != null) {
                 after2.setImageBitmap(photoAfter2);
-                photoAfter2.compress(Bitmap.CompressFormat.PNG, 100, output);
+                photoAfter2.compress(Bitmap.CompressFormat.JPEG, 80, output);
                 phtAfter2 = output.toByteArray();
             }
 
@@ -611,7 +600,7 @@ public class FragmentAddKemasanRusak extends Fragment implements IXListViewListe
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -647,7 +636,7 @@ public class FragmentAddKemasanRusak extends Fragment implements IXListViewListe
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -698,7 +687,7 @@ public class FragmentAddKemasanRusak extends Fragment implements IXListViewListe
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".jpg");
         return mediaFile;
     }
 

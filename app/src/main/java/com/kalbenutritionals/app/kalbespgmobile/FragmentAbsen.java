@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
@@ -49,9 +48,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -425,8 +421,8 @@ public class FragmentAbsen extends Fragment implements ConnectionCallbacks, OnCo
                                                     String idUserActive = String.valueOf(dataUserActive.get_txtUserId());
                                                     String idRoleActive = String.valueOf(dataUserActive.get_txtRoleId());
                                                     List<tDeviceInfoUserData> dataDeviceInfoUser = new tDeviceInfoUserBL().getData(0);
-                                                    String deviceInfo="";
-                                                    if(dataDeviceInfoUser!=null){
+                                                    String deviceInfo = "";
+                                                    if (dataDeviceInfoUser != null) {
                                                         deviceInfo = String.valueOf(dataDeviceInfoUser.get(0).get_txtDeviceId());
                                                     }
                                                     List<tAbsenUserData> absenUserDatas = new ArrayList<>();
@@ -515,6 +511,7 @@ public class FragmentAbsen extends Fragment implements ConnectionCallbacks, OnCo
 
     // get location GPS
     private boolean earlyState = true;
+
     public Location getLocation() {
         try {
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
@@ -524,8 +521,22 @@ public class FragmentAbsen extends Fragment implements ConnectionCallbacks, OnCo
 
             if (!isGPSEnabled && !isNetworkEnabled) {
                 // no network provider is enabled
-                mLastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    // TODO;
+
+                }
                 new clsMainActivity().showCustomToast(getContext(), "Please turn on GPS or check your internet connection", false);
+                mLastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
             } else {
                 if (isNetworkEnabled) {
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -749,7 +760,7 @@ public class FragmentAbsen extends Fragment implements ConnectionCallbacks, OnCo
             ByteArrayOutputStream out = null;
             try {
                 out = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, out); // bmp is your Bitmap instance
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out); // bmp is your Bitmap instance
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -782,7 +793,7 @@ public class FragmentAbsen extends Fragment implements ConnectionCallbacks, OnCo
             ByteArrayOutputStream out = null;
             try {
                 out = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, out); // bmp is your Bitmap instance
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out); // bmp is your Bitmap instance
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

@@ -30,22 +30,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -60,10 +55,8 @@ import java.util.Locale;
 
 import bl.clsHelperBL;
 import bl.mEmployeeBranchBL;
-import bl.tAbsenUserBL;
 import bl.tAttendanceUserBL;
 import bl.tDeviceInfoUserBL;
-import bl.tPlanogramMobileBL;
 import bl.tUserLoginBL;
 import library.spgmobile.common.mEmployeeBranchData;
 import library.spgmobile.common.tAttendanceUserData;
@@ -474,7 +467,7 @@ public class FragmentAttendance extends Fragment implements GoogleApiClient.Conn
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_attendance" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_attendance" + ".jpg");
         return mediaFile;
     }
     @Override
@@ -528,7 +521,7 @@ public class FragmentAttendance extends Fragment implements GoogleApiClient.Conn
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -558,7 +551,7 @@ public class FragmentAttendance extends Fragment implements GoogleApiClient.Conn
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();

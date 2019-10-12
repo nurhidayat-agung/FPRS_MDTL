@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 
 public class MyRebootReceiver extends BroadcastReceiver{
 
@@ -29,11 +30,19 @@ public class MyRebootReceiver extends BroadcastReceiver{
 			}
 
 		} else if(broadcastName.equalsIgnoreCase("android.intent.action.BOOT_COMPLETED")||broadcastName.equalsIgnoreCase("android.intent.action.QUICKBOOT_POWERON")){
+            // todo ghqp fix service
+
 			Intent serviceIntentMyServiceNative = new Intent(context, MyServiceNative.class);
-			context.startService(serviceIntentMyServiceNative);
+            //context.startService(serviceIntentMyServiceNative);
 
 			Intent serviceIntentMyTrackingLocationService = new Intent(context, MyTrackingLocationService.class);
-			context.startService(serviceIntentMyTrackingLocationService);
+            //context.startService(serviceIntentMyTrackingLocationService);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(serviceIntentMyTrackingLocationService);
+            } else {
+                context.startService(serviceIntentMyTrackingLocationService);
+            }
 
 			/*
 			Intent serviceIntentMyNotificationService = new Intent(context, MyNotificationService.class);

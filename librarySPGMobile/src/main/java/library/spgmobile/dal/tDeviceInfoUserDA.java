@@ -1,10 +1,10 @@
 package library.spgmobile.dal;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import library.spgmobile.common.tDeviceInfoUserData;
 
@@ -67,7 +67,7 @@ public class tDeviceInfoUserDA {
 
 	// Getting single contact
 	public tDeviceInfoUserData getData(SQLiteDatabase db,int id) {
-		tDeviceInfoUserData dt=new tDeviceInfoUserData();
+		tDeviceInfoUserData dt = new tDeviceInfoUserData();
 		tDeviceInfoUserData contact =null;
 		Cursor cursor = db.query(TABLE_CONTACTS, new String[] { dt.Property_intId,
 				dt.Property_txtVersion,dt.Property_txtDevice, dt.Property_txtModel, dt.Property_txtUserId, dt.Property_txtImei,dt.Property_txtDeviceId}, dt.Property_intId + "=?",
@@ -76,7 +76,8 @@ public class tDeviceInfoUserDA {
 			if(cursor.getCount()>0){
 				cursor.moveToFirst();
 				contact = new tDeviceInfoUserData(Integer.valueOf(cursor.getString(0)),
-						cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6));
+						cursor.getString(1), cursor.getString(2), cursor.getString(3)
+						, cursor.getString(4), cursor.getString(5), cursor.getString(6));
 			}
 		}
 

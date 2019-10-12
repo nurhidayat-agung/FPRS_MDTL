@@ -99,13 +99,13 @@ public class FragmentViewVisitplan  extends Fragment implements IXListViewListen
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                new clsMainActivity().showCustomToast(getContext(), "You click id : " + id +" Posisi : "+position, true);
-                        Bundle data = new Bundle();
-                        data.putString( ID_REALISASI , hmIdRealisasi.get(position).toString());
-                        FragmentVisitPlan fragmentVisitPlan = new FragmentVisitPlan();
-                        fragmentVisitPlan.setArguments(data);
-                        FragmentTransaction fragmentTransaction = getParentFragment().getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.frame, fragmentVisitPlan);
-                        fragmentTransaction.commit();
+                    Bundle data = new Bundle();
+                    data.putString(ID_REALISASI, hmIdRealisasi.get(position).toString());
+                    FragmentVisitPlan fragmentVisitPlan = new FragmentVisitPlan();
+                    fragmentVisitPlan.setArguments(data);
+                    FragmentTransaction fragmentTransaction = getParentFragment().getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.frame, fragmentVisitPlan);
+                    fragmentTransaction.commit();
                 }
             });
         }

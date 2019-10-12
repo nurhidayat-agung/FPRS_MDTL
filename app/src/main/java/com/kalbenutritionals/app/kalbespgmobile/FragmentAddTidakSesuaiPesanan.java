@@ -29,10 +29,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,7 +51,6 @@ import bl.tTidakSesuaiPesananImageBL;
 import bl.tUserLoginBL;
 import library.spgmobile.common.KoordinasiOutletData;
 import library.spgmobile.common.KoordinasiOutletImageData;
-import library.spgmobile.common.mCategoryKoordinasiOutletData;
 import library.spgmobile.common.tTidakSesuaiPesananHeaderData;
 import library.spgmobile.common.tTidakSesuaiPesananImageData;
 import library.spgmobile.common.tUserLoginData;
@@ -177,13 +172,13 @@ public class FragmentAddTidakSesuaiPesanan extends Fragment {
 
         if (photoImage1 != null){
             image1.setImageBitmap(photoImage1);
-            photoImage1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoImage1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtImage1 = output.toByteArray();
         }
 
         if (photoImage2 != null){
             image2.setImageBitmap(photoImage2);
-            photoImage2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoImage2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtImage2 = output.toByteArray();
         }
 
@@ -438,7 +433,7 @@ public class FragmentAddTidakSesuaiPesanan extends Fragment {
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -474,7 +469,7 @@ public class FragmentAddTidakSesuaiPesanan extends Fragment {
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -525,7 +520,7 @@ public class FragmentAddTidakSesuaiPesanan extends Fragment {
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act"  + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".jpg");
         return mediaFile;
     }
 

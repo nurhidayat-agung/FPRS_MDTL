@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import library.spgmobile.common.tAbsenUserData;
-import library.spgmobile.common.tLeaveMobileData;
 import library.spgmobile.common.tVisitPlanRealisasiData;
 
 /**
@@ -420,7 +418,7 @@ public class tVisitPlanRealisasiDA {
         // Select All Query
         tVisitPlanRealisasiData dt = new tVisitPlanRealisasiData();
         String selectQuery = "SELECT  1 FROM "
-                + TABLE_CONTACTS +" WHERE " +dt.Property_intPush +" ='0' And "+dt.Property_intSubmit+"=1" ;
+                + TABLE_CONTACTS + " WHERE " + dt.Property_intPush + " ='0' And " + dt.Property_intSubmit + "=1 And " + dt.Property_dtDateRealisasi + " NOTNULL";
         Cursor cursor = db.rawQuery(selectQuery, null);
         // return count
         int index = cursor.getCount();

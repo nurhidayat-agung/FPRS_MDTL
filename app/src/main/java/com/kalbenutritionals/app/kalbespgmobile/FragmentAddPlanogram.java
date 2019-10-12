@@ -20,7 +20,6 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,10 +32,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -53,19 +48,13 @@ import java.util.List;
 import java.util.Locale;
 
 import bl.clsHelperBL;
-import bl.tActivityBL;
 import bl.tKategoryPlanogramMobileBL;
 import bl.tPlanogramImageBL;
 import bl.tPlanogramMobileBL;
-import bl.tSalesProductQuantityImageBL;
-import bl.tSubTypeActivityBL;
 import bl.tUserLoginBL;
-import library.spgmobile.common.tActivityData;
 import library.spgmobile.common.tKategoryPlanogramMobileData;
 import library.spgmobile.common.tPlanogramImageData;
 import library.spgmobile.common.tPlanogramMobileData;
-import library.spgmobile.common.tSalesProductQuantityImageData;
-import library.spgmobile.common.tSubTypeActivityData;
 import library.spgmobile.common.tUserLoginData;
 import library.spgmobile.common.visitplanAbsenData;
 import library.spgmobile.dal.clsHardCode;
@@ -638,7 +627,7 @@ public class FragmentAddPlanogram extends Fragment implements View.OnClickListen
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_plngrm" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_plngrm" + ".jpg");
         return mediaFile;
     }
 
@@ -791,7 +780,7 @@ public class FragmentAddPlanogram extends Fragment implements View.OnClickListen
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -831,7 +820,7 @@ public class FragmentAddPlanogram extends Fragment implements View.OnClickListen
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -870,7 +859,7 @@ public class FragmentAddPlanogram extends Fragment implements View.OnClickListen
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -909,7 +898,7 @@ public class FragmentAddPlanogram extends Fragment implements View.OnClickListen
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -80,7 +80,7 @@ import static android.content.Context.LOCATION_SERVICE;
  * Created by Robert on 27/04/2017.
  */
 
-public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener{
+public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
     private GoogleMap mMap;
     private Location mLastLocation;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
@@ -271,7 +271,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
                     }
                 }
 
-                if(valid){
+                if (valid) {
                     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
                     final View promptView = layoutInflater.inflate(R.layout.popup_map_absen, null);
@@ -283,64 +283,64 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
                         mMap = ((MapFragment) (getActivity()).getFragmentManager().findFragmentById(R.id.map)).getMap();
                     }
 
-                        MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Your Location");
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Your Location");
 
-                        MarkerOptions markerOutlet = new MarkerOptions().position(new LatLng(latitudeOutlet, longitudeOutlet)).title("Outlet Location");
+                    MarkerOptions markerOutlet = new MarkerOptions().position(new LatLng(latitudeOutlet, longitudeOutlet)).title("Outlet Location");
 
-                        marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
-                        final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                        builder.include(marker.getPosition());
-                        builder.include(markerOutlet.getPosition());
+                    final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                    builder.include(marker.getPosition());
+                    builder.include(markerOutlet.getPosition());
 
-                        mMap.clear();
-                        mMap.addMarker(marker);
-                        mMap.addMarker(markerOutlet);
+                    mMap.clear();
+                    mMap.addMarker(marker);
+                    mMap.addMarker(markerOutlet);
 
-                        final GoogleMap finalMMap = mMap;
-                        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                    final GoogleMap finalMMap = mMap;
+                    mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
 
-                            @Override
-                            public void onCameraChange(CameraPosition arg0) {
-                                // Move camera.
-                                finalMMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 60));
-                                // Remove listener to prevent position reset on camera move.
-                                finalMMap.setOnCameraChangeListener(null);
-                            }
-                        });
+                        @Override
+                        public void onCameraChange(CameraPosition arg0) {
+                            // Move camera.
+                            finalMMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 60));
+                            // Remove listener to prevent position reset on camera move.
+                            finalMMap.setOnCameraChangeListener(null);
+                        }
+                    });
 
 
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                        alertDialogBuilder.setView(promptView);
-                        alertDialogBuilder
-                                .setCancelable(false)
-                                .setPositiveButton("OK",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                MapFragment f = (MapFragment) (getActivity()).getFragmentManager().findFragmentById(R.id.map);
-                                                if (f != null) {
-                                                    (getActivity()).getFragmentManager().beginTransaction().remove(f).commit();
-                                                }
-
-                                                dialog.dismiss();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setView(promptView);
+                    alertDialogBuilder
+                            .setCancelable(false)
+                            .setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            MapFragment f = (MapFragment) (getActivity()).getFragmentManager().findFragmentById(R.id.map);
+                                            if (f != null) {
+                                                (getActivity()).getFragmentManager().beginTransaction().remove(f).commit();
                                             }
-                                        });
-                        final AlertDialog alertD = alertDialogBuilder.create();
 
-                        Location locationA = new Location("point A");
+                                            dialog.dismiss();
+                                        }
+                                    });
+                    final AlertDialog alertD = alertDialogBuilder.create();
 
-                        locationA.setLatitude(latitude);
-                        locationA.setLongitude(longitude);
+                    Location locationA = new Location("point A");
 
-                        Location locationB = new Location("point B");
+                    locationA.setLatitude(latitude);
+                    locationA.setLongitude(longitude);
 
-                        locationB.setLatitude(latitudeOutlet);
-                        locationB.setLongitude(longitudeOutlet);
+                    Location locationB = new Location("point B");
 
-                        distance = locationA.distanceTo(locationB);
+                    locationB.setLatitude(latitudeOutlet);
+                    locationB.setLongitude(longitudeOutlet);
 
-                        alertD.setTitle(String.valueOf((int) Math.ceil(distance)) + " meters");
-                        alertD.show();
+                    distance = locationA.distanceTo(locationB);
+
+                    alertD.setTitle(String.valueOf((int) Math.ceil(distance)) + " meters");
+                    alertD.show();
                 }
             }
         });
@@ -487,7 +487,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
 //                                                longitudeOutlet = 0.0;
                                                 validTagOutlet = false;
                                             }
-                                            if(dataDetail.get_txtLongSource().toString().equals("") || dataDetail.get_txtLongSource().toString().equals("null")){
+                                            if (dataDetail.get_txtLongSource().toString().equals("") || dataDetail.get_txtLongSource().toString().equals("null")) {
                                                 validTagOutlet = false;
                                             }
 //                                            else {
@@ -495,7 +495,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
 //                                                longitudeOutlet = Double.parseDouble(dataDetail.get_txtLongSource().toString());
 //                                            }
 
-                                            if(validTagOutlet){
+                                            if (validTagOutlet) {
                                                 latitudeOutlet = Double.parseDouble(dataDetail.get_txtLatSource().toString());
                                                 longitudeOutlet = Double.parseDouble(dataDetail.get_txtLongSource().toString());
                                                 Location locationA = new Location("point A");
@@ -549,8 +549,8 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
                                                     _tVisitPlanRealisasiData.set_intSubmit("1");
                                                     _tVisitPlanRealisasiData.set_txtAcc(lblAcc.getText().toString());
                                                     List<tDeviceInfoUserData> dataDeviceInfoUser = new tDeviceInfoUserBL().getData(0);
-                                                    String deviceInfo="";
-                                                    if(dataDeviceInfoUser!=null){
+                                                    String deviceInfo = "";
+                                                    if (dataDeviceInfoUser != null) {
                                                         deviceInfo = String.valueOf(dataDeviceInfoUser.get(0).get_txtDeviceId());
                                                     }
                                                     _tVisitPlanRealisasiData.set_deviceId(deviceInfo);
@@ -581,14 +581,11 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
                                                     getActivity().finish();
                                                     startActivity(myIntent);
                                                 }
-                                            }
-                                            else {
-                                            _clsMainActivity.showCustomToast(getContext(), "Outlet Location not Found", false);
+                                            } else {
+                                                _clsMainActivity.showCustomToast(getContext(), "Outlet Location not Found", false);
                                             }
 
-                                        }
-
-                                        else {
+                                        } else {
 //                                            _clsMainActivity.showCustomToast(getContext(), "Please Photo at least 1 photo..", false);
                                         }
                                     }
@@ -652,6 +649,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
 
     // get location GPS
     private boolean earlyState = true;
+
     public Location getLocation() {
         try {
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
@@ -661,8 +659,26 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
 
             if (!isGPSEnabled && !isNetworkEnabled) {
                 // no network provider is enabled
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    // return TODO;
+
+
+                }
+                new clsMainActivity().showCustomToast(getContext(),
+                        "Please turn on GPS or check your internet connection",
+                        false);
                 mLastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                new clsMainActivity().showCustomToast(getContext(), "Please turn on GPS or check your internet connection", false);
+
+
             } else {
                 if (isNetworkEnabled) {
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -904,7 +920,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
             ByteArrayOutputStream output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output); // bmp is your Bitmap instance
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output); // bmp is your Bitmap instance
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -938,7 +954,7 @@ public class FragmentVisitPlan extends Fragment implements ConnectionCallbacks, 
             ByteArrayOutputStream output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output); // bmp is your Bitmap instance
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output); // bmp is your Bitmap instance
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

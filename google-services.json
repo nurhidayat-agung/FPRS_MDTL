@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "280840520121",
+    "firebase_url": "https://fprs-mdtl.firebaseio.com",
+    "project_id": "fprs-mdtl",
+    "storage_bucket": "fprs-mdtl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280840520121:android:6f0fd60f41dac45cc7f668",
+        "android_client_info": {
+          "package_name": "com.kalbenutritionals.app.kalbespgmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280840520121-jo5rba37m04t1f0edd4h7t2l3a0n5dji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPctCkFVt9xBPh6RX0LwBLcV4NRZytMTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280840520121-jo5rba37m04t1f0edd4h7t2l3a0n5dji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

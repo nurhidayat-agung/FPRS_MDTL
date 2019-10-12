@@ -17,12 +17,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.text.ParseException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import bl.clsHelperBL;
 import bl.clsMainBL;
+import io.fabric.sdk.android.Fabric;
 import library.spgmobile.common.clsHelper;
 import library.spgmobile.common.clsStatusMenuStart;
 import library.spgmobile.dal.enumStatusMenuStart;
@@ -37,6 +40,7 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Fabric.with(this, new Crashlytics());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -139,7 +143,13 @@ public class Splash extends AppCompatActivity {
                         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     } else if (_clsStatusMenuStart.get_intStatus() == enumStatusMenuStart.UserActiveLogin) {
                         myIntent = new Intent(Splash.this, MainMenu.class);
-                        startService(new Intent(getApplicationContext(), MyServiceNative.class));
+                        // todo fix ghqp service
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            startForegroundService(new Intent(getApplicationContext(), MyServiceNative.class));
+                        } else {
+                            startService(new Intent(getApplicationContext(), MyServiceNative.class));
+                        }
+                        // startService(new Intent(getApplicationContext(), MyServiceNative.class));
                         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 } catch (ParseException e) {

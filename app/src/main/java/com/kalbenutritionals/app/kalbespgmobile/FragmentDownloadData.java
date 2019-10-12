@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -36,9 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kalbenutritionals.app.kalbespgmobile.Utils.ImagePick;
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import org.apache.http.util.ByteArrayBuffer;
 import org.json.simple.JSONArray;
@@ -8207,18 +8205,31 @@ public class FragmentDownloadData extends Fragment {
 
                     Intent serviceIntentMyServiceNative = new Intent(getContext(), MyServiceNative.class);
                     if (!isMyServiceRunning(MyServiceNative.class)) {
-                        getActivity().startService(serviceIntentMyServiceNative);
+                        // todo ghqp fix error
+                        // getActivity().startService(serviceIntentMyServiceNative);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            getActivity().startForegroundService(serviceIntentMyServiceNative);
+                        } else {
+                            getActivity().startService(serviceIntentMyServiceNative);
+                        }
                     }
 
                     Intent serviceIntentMyTrackingLocationService = new Intent(getActivity(), MyTrackingLocationService.class);
                     if (!isMyServiceRunning(MyTrackingLocationService.class)) {
                         getActivity().startService(serviceIntentMyTrackingLocationService);
+                        // todo ghqp fix error
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            getActivity().startForegroundService(serviceIntentMyServiceNative);
+                        } else {
+                            getActivity().startService(serviceIntentMyServiceNative);
+                        }
                     }
 
                 File file = new File("/sdcard/db_new_mobile.db3");
                     if(file.exists()){
                         file.delete();
                     }
+
 
             }
 

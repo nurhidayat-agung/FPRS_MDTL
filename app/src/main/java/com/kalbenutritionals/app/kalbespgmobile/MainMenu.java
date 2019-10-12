@@ -149,17 +149,28 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         selectedId = 0;
 
-        tUserLoginData dt = new tUserLoginBL().getUserActive();
 
+        tUserLoginData dt = new tUserLoginBL().getUserActive();
+        // todo ghqp fix service
         Intent serviceIntentMyServiceNative = new Intent(getApplicationContext(), MyServiceNative.class);
         if (!isMyServiceRunning(MyServiceNative.class)) {
-            getApplicationContext().startService(serviceIntentMyServiceNative);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                getApplicationContext().startForegroundService(serviceIntentMyServiceNative);
+            } else {
+                getApplicationContext().startService(serviceIntentMyServiceNative);
+            }
+
         }
 
         if(dt.get_intTrackingMobile().equals("1")){
             Intent serviceIntentMyTrackingLocationService = new Intent(getApplicationContext(), MyTrackingLocationService.class);
             if (!isMyServiceRunning(MyTrackingLocationService.class)) {
-                getApplicationContext().startService(serviceIntentMyTrackingLocationService);
+                // todo ghqp fix service
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    getApplicationContext().startForegroundService(serviceIntentMyTrackingLocationService);
+                } else {
+                    getApplicationContext().startService(serviceIntentMyTrackingLocationService);
+                }
             }
         } else if (dt.get_intTrackingMobile().equals("0")){
 //            MyTrackingLocationService service = new MyTrackingLocationService();

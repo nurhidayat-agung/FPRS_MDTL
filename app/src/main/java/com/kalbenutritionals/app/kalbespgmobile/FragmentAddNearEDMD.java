@@ -30,10 +30,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +47,6 @@ import bl.clsMainBL;
 import bl.mCounterNumberBL;
 import bl.mEmployeeSalesProductBL;
 import bl.mUserLOBBL;
-import bl.tOverStockDetailBL;
 import bl.tSalesProductQuantityDetailBL;
 import bl.tSalesProductQuantityHeaderBL;
 import bl.tSalesProductQuantityImageBL;
@@ -66,7 +61,6 @@ import library.spgmobile.common.clsHelper;
 import library.spgmobile.common.clsSwipeList;
 import library.spgmobile.common.mEmployeeSalesProductData;
 import library.spgmobile.common.mUserLOBData;
-import library.spgmobile.common.tOverStockDetailData;
 import library.spgmobile.common.tSalesProductQuantityDetailData;
 import library.spgmobile.common.tSalesProductQuantityHeaderData;
 import library.spgmobile.common.tSalesProductQuantityImageData;
@@ -235,25 +229,25 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
 
         if (photoAfter1 != null) {
             after1.setImageBitmap(photoAfter1);
-            photoAfter1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoAfter1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtAfter1 = output.toByteArray();
         }
 
         if (photoAfter2 != null) {
             after2.setImageBitmap(photoAfter2);
-            photoAfter2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoAfter2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtAfter2 = output.toByteArray();
         }
 
         if (photoBefore1 != null) {
             before1.setImageBitmap(photoBefore1);
-            photoBefore1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoBefore1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtBefore1 = output.toByteArray();
         }
 
         if (photoBefore2 != null) {
             before2.setImageBitmap(photoBefore2);
-            photoBefore2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoBefore2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtBefore2 = output.toByteArray();
         }
 
@@ -639,7 +633,7 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -675,7 +669,7 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -711,7 +705,7 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -747,7 +741,7 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -793,7 +787,7 @@ public class FragmentAddNearEDMD extends Fragment implements IXListViewListener 
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".jpg");
         return mediaFile;
     }
 

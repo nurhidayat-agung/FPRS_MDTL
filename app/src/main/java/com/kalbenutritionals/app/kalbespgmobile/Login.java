@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
@@ -51,7 +50,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,7 +57,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -71,7 +68,6 @@ import bl.mCountConsumerMTDBL;
 import bl.mCounterNumberBL;
 import bl.mDownloadMasterData_mobileBL;
 import bl.mMenuBL;
-import bl.mTypeSubmissionMobileBL;
 import bl.mUserLOBBL;
 import bl.mUserRoleBL;
 import bl.tDeviceInfoUserBL;
@@ -83,9 +79,7 @@ import library.spgmobile.common.clsHelper;
 import library.spgmobile.common.mCountConsumerMTDData;
 import library.spgmobile.common.mCounterNumberData;
 import library.spgmobile.common.mDownloadMasterData_mobileData;
-import library.spgmobile.common.mEmployeeAreaData;
 import library.spgmobile.common.mMenuData;
-import library.spgmobile.common.mTypeSubmissionMobile;
 import library.spgmobile.common.mUserLOBData;
 import library.spgmobile.common.mUserRoleData;
 import library.spgmobile.common.tLogErrorData;
@@ -100,8 +94,6 @@ import library.spgmobile.dal.mUserRoleDA;
 import library.spgmobile.dal.mconfigDA;
 import service.MyServiceNative;
 import service.MyTrackingLocationService;
-
-import static android.support.v4.content.FileProvider.getUriForFile;
 //import static junit.framework.Assert.assertEquals;
 
 public class Login extends clsMainActivity {
@@ -377,6 +369,8 @@ public class Login extends clsMainActivity {
         btnPing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // throw new RuntimeException("test ghqp");
+                // todo test crash
                 String strUrl = new mconfigDA(new clsMainBL().getDb()).getData(new clsMainBL().getDb(), enumConfigData.ApiKalbe.getidConfigData()).get_txtValue();
                 try {
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -386,7 +380,7 @@ public class Login extends clsMainActivity {
                     HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
                     urlConn.connect();
 
-//                    assertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
+//                  iassertEquals(HttpURLConnection.HTTP_OK, urlConn.getResponseCode());
                     showCustomToast(Login.this, "Connected", true);
 
                 } catch (IOException e) {
@@ -704,12 +698,24 @@ public class Login extends clsMainActivity {
 //                        }
 
                         if (!isMyServiceRunning(MyServiceNative.class)) {
-                            startService(new Intent(Login.this, MyServiceNative.class));
+                            // todo ghqp fix error
+                            //startService(new Intent(Login.this, MyServiceNative.class));
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                startForegroundService(new Intent(Login.this, MyServiceNative.class));
+                            } else {
+                                startService(new Intent(new Intent(Login.this, MyServiceNative.class)));
+                            }
                         }
 
                         if(intTrackingMobile.equals("1")){
                             if (!isMyServiceRunning(MyTrackingLocationService.class)) {
-                                startService(new Intent(Login.this, MyTrackingLocationService.class));
+                                //todo ghqp fix error
+                                //startService(new Intent(Login.this, MyTrackingLocationService.class));
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    startForegroundService(new Intent(Login.this, MyTrackingLocationService.class));
+                                } else {
+                                    startService(new Intent(Login.this, MyTrackingLocationService.class));
+                                }
                             }
                         }
 

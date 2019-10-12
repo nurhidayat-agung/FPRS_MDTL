@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,10 +28,6 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -53,8 +48,6 @@ import bl.mEmployeeSalesProductBL;
 import bl.mUserLOBBL;
 import bl.tOverStockDetailBL;
 import bl.tOverStockHeaderBL;
-import bl.tSalesProductQuantityDetailBL;
-import bl.tSalesProductQuantityHeaderBL;
 import bl.tSalesProductQuantityImageBL;
 import bl.tUserLoginBL;
 import edu.swu.pulltorefreshswipemenulistview.library.PullToRefreshSwipeMenuListView;
@@ -69,8 +62,6 @@ import library.spgmobile.common.mEmployeeSalesProductData;
 import library.spgmobile.common.mUserLOBData;
 import library.spgmobile.common.tOverStockDetailData;
 import library.spgmobile.common.tOverStockHeaderData;
-import library.spgmobile.common.tSalesProductQuantityDetailData;
-import library.spgmobile.common.tSalesProductQuantityHeaderData;
 import library.spgmobile.common.tSalesProductQuantityImageData;
 import library.spgmobile.common.tUserLoginData;
 import library.spgmobile.common.visitplanAbsenData;
@@ -234,25 +225,25 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
 
         if (photoAfter1 != null) {
             after1.setImageBitmap(photoAfter1);
-            photoAfter1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoAfter1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtAfter1 = output.toByteArray();
         }
 
         if (photoAfter2 != null) {
             after2.setImageBitmap(photoAfter2);
-            photoAfter2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoAfter2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtAfter2 = output.toByteArray();
         }
 
         if (photoBefore1 != null) {
             before1.setImageBitmap(photoBefore1);
-            photoBefore1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoBefore1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtBefore1 = output.toByteArray();
         }
 
         if (photoBefore2 != null) {
             before2.setImageBitmap(photoBefore2);
-            photoBefore2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photoBefore2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             phtBefore2 = output.toByteArray();
         }
 
@@ -658,7 +649,7 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -694,7 +685,7 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -730,7 +721,7 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -766,7 +757,7 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
             output = null;
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -812,7 +803,7 @@ public class FragmentAddOverStockMD extends Fragment implements IXListViewListen
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".jpg");
         return mediaFile;
     }
 

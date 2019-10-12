@@ -1,6 +1,9 @@
 package bl;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+
+import com.kalbenutritionals.app.kalbespgmobile.BuildConfig;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -111,6 +114,15 @@ public class tUserLoginBL extends clsMainBL{
 		tDeviceInfoUserData dt= new tDeviceInfoUserDA(db).getData(db, 1);
 		String txtDomain= _mconfigDA.getDomainKalbeData(db);
 		//String txtParam= txtDomain+"|"+txtUserName+"|"+txtPass+"||"+dt.get_txtVersion()+"|"+dt.get_txtDevice()+"|"+dt.get_txtModel()+"|"+intRoleId;
+
+		if (dt == null) {
+			dt = new tDeviceInfoUserData();
+			dt.set_txtDevice(Build.HARDWARE);
+			dt.set_txtVersion(BuildConfig.VERSION_NAME);
+			dt.set_txtModel(Build.MODEL);
+			dt.set_txtImei(Build.MANUFACTURER);
+		}
+
 		JSONObject resJson = new JSONObject();
 		resJson.put("domain", txtDomain);
 		resJson.put("username", txtUserName);

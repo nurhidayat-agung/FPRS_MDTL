@@ -337,7 +337,7 @@ public class FragmentAddPOP extends Fragment {
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_POPStandard" + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_POPStandard" + ".jpg");
         return mediaFile;
     }
 
@@ -409,7 +409,7 @@ public class FragmentAddPOP extends Fragment {
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -439,7 +439,7 @@ public class FragmentAddPOP extends Fragment {
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();

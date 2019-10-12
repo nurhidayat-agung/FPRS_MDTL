@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,10 +32,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import com.kalbenutritionals.app.kalbespgmobile.MainMenu;
-import com.kalbenutritionals.app.kalbespgmobile.R;
-import com.kalbenutritionals.app.kalbespgmobile.clsMainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -206,13 +201,13 @@ public class FragmentAddActivityMD extends Fragment implements View.OnClickListe
 
         if(photo1 != null){
             imgActivity1.setImageBitmap(photo1);
-            photo1.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photo1.compress(Bitmap.CompressFormat.JPEG, 80, output);
             pht1 = output.toByteArray();
         }
 
         if(photo2 != null){
             imgActivity2.setImageBitmap(photo2);
-            photo2.compress(Bitmap.CompressFormat.PNG, 100, output);
+            photo2.compress(Bitmap.CompressFormat.JPEG, 80, output);
             pht2 = output.toByteArray();
         }
 
@@ -438,7 +433,7 @@ public class FragmentAddActivityMD extends Fragment implements View.OnClickListe
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -482,7 +477,7 @@ public class FragmentAddActivityMD extends Fragment implements View.OnClickListe
         try {
             try {
                 output = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 0, output); // bmp is your Bitmap instance
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, output); // bmp is your Bitmap instance
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -538,7 +533,7 @@ public class FragmentAddActivityMD extends Fragment implements View.OnClickListe
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act"  + ".png");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "tmp_act" + ".jpg");
         return mediaFile;
     }
 

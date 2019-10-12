@@ -149,15 +149,19 @@ public class mconfigDA {
         //http://xteam1985.kalbenutritionals.co.id/api/Default.aspx?callback=?
         //http://10.171.85.238/WebDashboard/api/Default.aspx?callback=?
         //https://appgw01.kalbenutritionals.com/kndashboard
+
+        // todo for url dev and prod
         txtQuery = "insert or replace into mconfig(intId,txtName,txtValue,txtDefaultValue,intEditAdmin )"
-//                + "select  2,'API','http://xt34m.kalbenutritionals.co.id/api/api.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;";
+//                + "select  2,'API','http://xt34m.kalbenutritionals.co.id/api/api.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;"; // testing
 //				+ "select  2,'API','http://10.171.10.17:8001/api/api.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;";
 //                + "select  2,'API','http://10.171.14.42/webdashboard/api/API.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;";
-                + "select  2,'API','https://knis.kalbenutritionals.com/api/api.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;";
+                + "select  2,'API','https://knis.kalbenutritionals.com/api/api.aspx?callback=?','https://appgw01.kalbenutritionals.com/kndashboard/api/default.aspx?callback=?',1;"; // prod
         db.execSQL(txtQuery);
+
+        // todo change for above for spg and bottom for md
         txtQuery = "insert or replace into mconfig(intId,txtName,txtValue,txtDefaultValue,intEditAdmin )"
-//                + "select  3,'Type Mobile','SPGMobile Native-Android-Enhance','SPGMobile Native-Android-Enhance',1;";
-        + "select  3,'Type Mobile','MDMobile Native-Android-Enhance','MDMobile Native-Android-Enhance',1;";
+                //        + "select  3,'Type Mobile','SPGMobile Native-Android-Enhance','SPGMobile Native-Android-Enhance',1;";
+                + "select  3,'Type Mobile','MDMobile Native-Android-Enhance','MDMobile Native-Android-Enhance',1;";
         db.execSQL(txtQuery);
         txtQuery = "insert or replace into mconfig(intId,txtName,txtValue,txtDefaultValue,intEditAdmin )"
                 + "select  4,'Domain Kalbe','KALBEFOOD.LOCAL','KALBEFOOD.LOCAL',1;";
